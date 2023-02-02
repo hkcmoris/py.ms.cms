@@ -1,14 +1,17 @@
 import json
+import os
 import mechanicalsoup
 
 
 class apiBrowser():
     browser = None
-    config = {}
+    config = []
 
     def __init__(self):
         self.browser = mechanicalsoup.StatefulBrowser()
-        with open("config.json", "r") as f:
+
+    def load(self):
+        with open(os.path.join("api", "config.json"), "r") as f:
             self.config = json.load(f)  # load config
 
     def login(self, username, password):
@@ -16,7 +19,7 @@ class apiBrowser():
             self.config["baseurl"] + self.config["login"])
         if (page_login.status_code != 200):
             print(
-                f"{page_login.status_code}\t: {self.browser['baseurl']}{self.browser['login']}")
+                f"{page_login.status_code}\t: {self.config['baseurl']}{self.config['login']}")
             return None
 
         self.browser.select_form("form")
@@ -31,3 +34,19 @@ class apiBrowser():
 
         print(f"Logged in as {username}")
         return True
+
+    def request(self, request):
+        if self.browser == None:
+            return None
+
+        return request
+
+    def welcomePage(self):
+        page = self.browser.open(
+            f"{self.config['baseurl']}{self.config['welcome_page']}")
+        if (page.status_code != 200):
+            print(
+                f"{page.status_code}\t: {self.config['baseurl']}{self.config['welcome_page']}")
+            return "welcome_page = None"
+
+        return page.soup.find_all('textarea', id='frmarticleEditForm-uvod')[0].text + '\n<hr />\n' + page.soup.find_all('textarea', id='frmarticleEditForm-text')[0].text

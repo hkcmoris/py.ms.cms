@@ -2,5 +2,6 @@
   "baseurl": "http://www.skolka-riegrova.cz",
   "login": "/prihlaseni/",
   "adminpage": "/admin/webstructadmin/show",
+  "welcome_page": "/admin/articlesadmin/edit?klic=41",
   "newgallery": "/admin/galleryadmin/edit?klic=0"
 }
