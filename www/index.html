@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
     <head>
+        <meta charset="utf-8">
         <title><!--#title--></title>
+        <meta name="author" content="Ondřej Moravec">
+        <meta name="description" content="Ondřej Moravec - CMS">
+        <meta name="keywords" content="Ondřej Moravec, CMS, HTML, CSS, JavaScript, Python, MechanicalSoup">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/text_editor.css">
+        <link rel="stylesheet" href="css/app.css">
     </head>
     <body>
         <div id="app_container">
-            <header>
+            <header id="app_header">
                 <h1><!--#title--></h1>
             </header>
-            <main>
+            <main id="app_main">
                 <div id="app_content">
-                    <!--#welcome_page-->
+                    <textarea class="text_editor"><!--#welcome_page--></textarea>
                 </div>
             </main>
-            <footer>
+            <footer id="app_footer">
                 <p>Ondřej Moravec © 2023 - <!--#title--></p>
             </footer>
         </div>
+        <script src="js/main.js"></script>
     </body>
 </html>

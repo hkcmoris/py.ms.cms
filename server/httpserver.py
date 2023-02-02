@@ -50,7 +50,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                         for keyword in keywords:
                             if keyword.encode() in content:
                                 content = content.replace(
-                                    keyword.encode(), self.do_APIRequest(keyword).encode())
+                                    b"<!--#"+keyword.encode()+b"-->", self.do_APIRequest(keyword).encode())
                     self.wfile.write(content.replace(
                         b"<!--#title-->", self.path[1:].encode()))
                 return
