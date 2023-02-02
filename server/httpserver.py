@@ -3,6 +3,11 @@ import webbrowser
 
 
 class RequestHandler(BaseHTTPRequestHandler):
+
+    def __init__(self, request, client_address, server, api):
+        self.api = api
+        super().__init__(request, client_address, server)
+
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
@@ -18,9 +23,10 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 class httpserver:
 
-    def __init__(self, port):
+    def __init__(self, port, api):
         self.server_address = ("", port)
-        self.httpd = HTTPServer(self.server_address, RequestHandler)
+        self.httpd = HTTPServer(self.server_address, RequestHandler(
+            api=api, server=self.httpd, client_address=self.server_address, request=None))
 
     def start(self):
         print(f"Starting web server on port {self.server_address[1]}")

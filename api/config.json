@@ -1,0 +1,6 @@
+{
+  "baseurl": "http://www.skolka-riegrova.cz",
+  "login": "/prihlaseni/",
+  "adminpage": "/admin/webstructadmin/show",
+  "newgallery": "/admin/galleryadmin/edit?klic=0"
+}
